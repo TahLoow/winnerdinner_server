@@ -1,9 +1,8 @@
-import express from 'express';
-import { getRecipes } from './src/models/winnerdinner_model';
-
+const express = require('express')
 const app = express()
 const port = 3001
 
+const winnerdinner_model = require('./winnerdinner_model')
 
 app.use(express.json())
 app.use(function (req, res, next) {
@@ -14,7 +13,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    getRecipes()
+    winnerdinner_model.getRecipes()
   .then(response => {
     res.status(200).send(response);
   })
@@ -22,6 +21,7 @@ app.get('/', (req, res) => {
     res.status(500).send(error);
   })
 })
+
 /*
 app.post('/merchants', (req, res) => {
     winnerdinner_model.createMerchant(req.body)
@@ -43,6 +43,7 @@ app.delete('/merchants/:id', (req, res) => {
   })
 })
 */
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

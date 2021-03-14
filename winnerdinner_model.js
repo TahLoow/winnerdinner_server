@@ -1,5 +1,4 @@
-import { Pool as Pool } from 'pg';
-
+const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'suleiman',
   host: '104.238.129.140',
@@ -9,7 +8,7 @@ const pool = new Pool({
 });
 
 
-export const getRecipes = () => {
+const getRecipes = () => {
   return new Promise(function(resolve, reject) {
     pool.query('SELECT * FROM recipes ORDER BY id ASC', (error, results) => {
       if (error) {
