@@ -8,13 +8,16 @@ const port = 3001
 
 app.use(helmet())
 app.use(cors())
-app.use(express.json())
 
+app.use(express.json())
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
   next()
 })
 app.use('/resources/recipes', recipesRouter)
+
+
+
 /*
 app.post('/merchants', (req, res) => {
     winnerdinner_model.createMerchant(req.body)
@@ -37,6 +40,9 @@ app.delete('/merchants/:id', (req, res) => {
   })
 })
 */
+
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
